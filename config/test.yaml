@@ -42,7 +42,7 @@ rgb_dir: '/home/ubuntu/DeepfakeBench/datasets/rgb'
 compression: c23  # compression-level for videos
 train_batchSize: 16   # training batch size
 test_batchSize: 256   # test batch size
-workers: 8   # number of data loading workers
+workers: 4   # number of data loading workers
 frame_num: {'train': 32, 'test': 32}   # number of frames to use per video in training and testing
 resolution: 256   # resolution of output image to network
 with_mask: true   # whether to include mask information in the input
