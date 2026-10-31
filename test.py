@@ -161,6 +161,7 @@ def main():
                mlp_dim=config['mlp_dim'],
                mlp_out_dim=config['mlp_out_dim'],
                head_num=config['head_num'],
+               clip_download_root=config['clip_download_root'],
                device=config['device'])
     epoch = 0
     #weights_paths = [

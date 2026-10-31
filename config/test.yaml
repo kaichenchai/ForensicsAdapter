@@ -15,6 +15,7 @@ train_set: 'ori'
 num_quires: 128
 fusion_map: {0: 0, 1: 1, 2: 8, 3: 15}
 clip_model_name: "ViT-L/14"
+clip_download_root: '/home/kai/ForensicsAdapter/weights'
 #clip_model_name: "ViT-B/16"
 
 #clip_model_name: "data/cuixinjie/ViT-L-14.pt"
@@ -27,7 +28,7 @@ head_num: 16  # for  clip_model_name: "ViT-L/14"
 all_dataset: [FaceForensics++, FF-F2F, FF-DF, FF-FS, FF-NT, FaceShifter, DeepFakeDetection, Celeb-DF-v1, Celeb-DF-v2, DFDCP, DFDC, DeeperForensics-1.0, UADFV]
 train_dataset: [FaceForensics++]
 #test_dataset: [FaceForensics++]
-test_dataset: [Celeb-DF-v1 ,Celeb-DF-v2, DFDCP, DFDC, DeepFakeDetection]
+test_dataset: [FaceForensics++]
 
 #test_dataset: [FaceForensics++]
 
@@ -35,7 +36,8 @@ test_dataset: [Celeb-DF-v1 ,Celeb-DF-v2, DFDCP, DFDC, DeepFakeDetection]
 #test_dataset: [FF-F2F]
 
 #dataset_json_folder: '/media/ouc/新加卷/DS_CLIP_V2/dataset/dataset_json'
-dataset_json_folder: '/data/cuixinjie/dataset/dataset_json'
+dataset_json_folder: '/home/kai/DeepfakeBench/preprocessing/dataset_json'
+rgb_dir: '/home/kai/DeepfakeBench/datasets/rgb'
 
 compression: c23  # compression-level for videos
 train_batchSize: 16   # training batch size

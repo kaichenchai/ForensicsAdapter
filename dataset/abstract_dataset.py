@@ -237,6 +237,7 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
             ValueError: If the loaded image is None.
         """
         size = self.config['resolution']
+        file_path = self._resolve_path(file_path)
         assert os.path.exists(file_path), f"{file_path} does not exist"
         img = cv2.imread(file_path)
         if img is None:
@@ -262,6 +263,7 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
         size = self.config['resolution']
         if file_path is None:
             return np.zeros((size, size, 1))
+        file_path = self._resolve_path(file_path)
         if os.path.exists(file_path):
             mask = cv2.imread(file_path, 0)
             if mask is None:
@@ -287,11 +289,18 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
         """
         if file_path is None:
             return np.zeros((81, 2))
+        file_path = self._resolve_path(file_path)
         if os.path.exists(file_path):
             landmark = np.load(file_path)
             return np.float32(landmark)
         else:
             return np.zeros((81, 2))
+
+    def _resolve_path(self, file_path):
+        file_path = file_path.replace('\\', os.sep)
+        if os.path.isabs(file_path):
+            return file_path
+        return os.path.join(self.config['rgb_dir'], file_path)
 
     def to_tensor(self, img):
         """
