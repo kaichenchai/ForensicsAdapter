@@ -72,15 +72,17 @@ Ensure your environment meets the following requirements:
 - 🔥 PyTorch 1.11
 - 🚀 CUDA 11.3
 
-Install dependencies:
+Install dependencies with [uv](https://docs.astral.sh/uv/). All packages are pinned in `pyproject.toml` and the interpreter is pinned to Python 3.9 in `.python-version`:
 
 ```bash
 git clone https://github.com/OUC-VAS/ForensicsAdapter.git
 cd ForensicsAdapter
-conda create -n FA python=3.9
-conda activate FA
-sh install.sh
+uv sync                     # creates ./.venv with Python 3.9 and installs all pinned deps
+source .venv/bin/activate
 ```
+
+Alternatively, prefix commands with `uv run` instead of activating, e.g. `uv run python train.py`.
+To install into an already activated environment (e.g. conda), run `uv sync --active`.
 
 ## 📂 Dataset
 

@@ -1,0 +1,54 @@
+[project]
+name = "forensics-adapter"
+version = "0.1.0"
+description = "Forensics Adapter: Adapting CLIP for Generalizable Face Forgery Detection (CVPR 2025)"
+readme = "README.md"
+requires-python = ">=3.9,<3.10"
+
+dependencies = [
+    # --- originally pinned in install.sh ---
+    "numpy==1.21.5",
+    "pandas==1.4.2",
+    "Pillow==9.0.1",
+    # dlib has no wheels and is compiled from source (requires cmake and a C++ compiler).
+    "dlib==19.24.0",
+    "imageio==2.9.0",
+    "imgaug==0.4.0",
+    "tqdm==4.61.0",
+    "scipy==1.7.3",
+    "seaborn==0.11.2",
+    "pyyaml==6.0",
+    "imutils==0.5.4",
+    "opencv-python==4.6.0.66",
+    "scikit-image==0.19.2",
+    "scikit-learn==1.0.2",
+    "albumentations==1.1.0",
+    "efficientnet-pytorch==0.7.1",
+    "timm==0.6.12",
+    "segmentation-models-pytorch==0.3.2",
+    "torchtoolbox==0.1.8.2",
+    "tensorboard==2.10.1",
+    # PyTorch CUDA 11.3 wheels come from the extra index declared below.
+    "torch==1.12.0+cu113",
+    "torchvision==0.13.0+cu113",
+    "torchaudio==0.12.0+cu113",
+    # --- imported by the code but missing from the original install.sh ---
+    "ftfy",            # model/clip/simple_tokenizer.py
+    "regex",           # model/clip/simple_tokenizer.py
+    "matplotlib",      # dataset/abstract_dataset.py (__main__ preview)
+    "setuptools<81",   # provides pkg_resources, used by model/clip/clip.py
+]
+
+[tool.uv]
+# This is an application, not an installable library: don't build/install the project itself.
+package = false
+
+[[tool.uv.index]]
+name = "pytorch-cu113"
+url = "https://download.pytorch.org/whl/cu113"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu113" }]
+torchvision = [{ index = "pytorch-cu113" }]
+torchaudio = [{ index = "pytorch-cu113" }]
